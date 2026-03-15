@@ -1,0 +1,76 @@
+.orbit-container {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  perspective: 2000px;
+}
+
+.orbit-scaling-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.orbit-scaling-container--responsive {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: center center;
+}
+
+.orbit-rotation-wrapper {
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.orbit-path-svg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.orbit-item {
+  position: absolute;
+  will-change: transform;
+  user-select: none;
+}
+
+.orbit-center-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.orbit-center-content * {
+  pointer-events: auto;
+}
+
+.orbit-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Opaque for better depth passing visibility over text */
+  filter: drop-shadow(0 0 15px rgba(123, 92, 255, 0.6));
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+}
+
+.orbit-item {
+  position: absolute;
+  will-change: transform, opacity, scale;
+  user-select: none;
+  pointer-events: auto;
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+.orbit-item:hover .orbit-image {
+  transform: scale(1.3) translateZ(50px);
+  filter: drop-shadow(0 0 25px rgba(255, 23, 68, 0.9)) brightness(1.2);
+}
