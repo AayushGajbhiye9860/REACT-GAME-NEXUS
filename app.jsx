@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { fetchGames, searchGames } from "./API/game_service"
+import Antigravity from "./Antigravity"
 
 // Custom backend base URL
 const API_BASE_URL = "http://localhost:3001"
@@ -213,6 +214,25 @@ function App() {
 
   return (
     <div className="app-shell">
+      <div className="antigravity-container">
+        <Antigravity
+          count={200} // Slightly fewer but larger particles for "clean" look
+          magnetRadius={200}
+          ringRadius={30} // More spread out orbital movement
+          waveSpeed={0.5} // Slow, graceful movement
+          waveAmplitude={2}
+          particleSize={4} // Clearly visible
+          lerpSpeed={0.03}
+          color="#a78bfa" // Lighter, cleaner violet/lavender
+          autoAnimate
+          particleVariance={3}
+          rotationSpeed={0.1}
+          depthFactor={2}
+          pulseSpeed={1}
+          particleShape="circle" // Clean circles
+          fieldStrength={50}
+        />
+      </div>
       {/* Top navigation */}
       <header className="navbar">
         <div className="nav-left" style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
@@ -221,7 +241,7 @@ function App() {
             <span className="brand-title" style={{ 
               fontSize: "1.1rem", 
               fontWeight: 800, 
-              color: "white",
+              color: "var(--heading)",
               letterSpacing: "-0.02em" 
             }}>Game Nexus</span>
           </div>
@@ -520,8 +540,8 @@ function App() {
                         />
                       ) : (
                         <div
-                          style={{
-                            background: "#2a2a35",
+                            style={{
+                            background: "var(--card)",
                             width: "100%",
                             height: "100%",
                           }}
