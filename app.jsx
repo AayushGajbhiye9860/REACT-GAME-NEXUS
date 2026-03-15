@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { fetchGames, searchGames } from "./API/game_service"
-import Antigravity from "./Antigravity"
+import Grainient from "./components/Grainient/Grainient"
+import GamePreviewCard from "./components/GamePreviewCard"
 
 // Custom backend base URL
 const API_BASE_URL = "http://localhost:3001"
@@ -215,67 +216,52 @@ function App() {
   return (
     <div className="app-shell">
       <div className="antigravity-container">
-        <Antigravity
-          count={200} // Slightly fewer but larger particles for "clean" look
-          magnetRadius={200}
-          ringRadius={30} // More spread out orbital movement
-          waveSpeed={0.5} // Slow, graceful movement
-          waveAmplitude={2}
-          particleSize={4} // Clearly visible
-          lerpSpeed={0.03}
-          color="#a78bfa" // Lighter, cleaner violet/lavender
-          autoAnimate
-          particleVariance={3}
-          rotationSpeed={0.1}
-          depthFactor={2}
-          pulseSpeed={1}
-          particleShape="circle" // Clean circles
-          fieldStrength={50}
+        <Grainient
+          color1="#4a154d"
+          color2="#8d1b9a"
+          color3="#1f8ef1"
+          timeSpeed={0.25}
+          colorBalance={0}
+          warpStrength={0.75}
+          warpFrequency={5}
+          warpSpeed={3}
+          warpAmplitude={50}
+          blendAngle={0}
+          blendSoftness={0.05}
+          rotationAmount={500}
+          noiseScale={2}
+          grainAmount={0.01}
+          grainScale={2}
+          grainAnimated={false}
+          contrast={1.5}
+          gamma={1}
+          saturation={1}
+          centerX={0}
+          centerY={0}
+          zoom={0.9}
         />
       </div>
       {/* Top navigation */}
-      <header className="navbar">
-        <div className="nav-left" style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-          <div className="logo-mark">GX</div>
-          <div className="brand-copy" style={{ display: "flex", flexDirection: "column" }}>
-            <span className="brand-title" style={{ 
-              fontSize: "1.1rem", 
-              fontWeight: 800, 
-              color: "var(--heading)",
-              letterSpacing: "-0.02em" 
-            }}>Game Nexus</span>
+      <header className="page">
+        <div className="logo">
+          <div className="logo-mark">
+            <div className="logo-icon"></div>
+          </div>
+          <div>
+            <div className="logo-text-main">GAME NEXUS</div>
+            <div className="logo-text-sub">Retro Arcade System</div>
           </div>
         </div>
-        <nav className="nav-links">
-          <button
-            className={
-              activeTab === "discover" ? "nav-pill nav-pill-active" : "nav-pill"
-            }
-            type="button"
-            onClick={() => handleNavClick("discover")}
-          >
-            Discover
-          </button>
-          <button
-            className={
-              activeTab === "trending" ? "nav-pill nav-pill-active" : "nav-pill"
-            }
-            type="button"
-            onClick={() => handleNavClick("trending")}
-          >
-            Trending
-          </button>
-          <button
-            className={activeTab === "new" ? "nav-pill nav-pill-active" : "nav-pill"}
-            type="button"
-            onClick={() => handleNavClick("new")}
-          >
-            New Drops
-          </button>
+        <nav>
+          <a href="#" className={activeTab === "discover" ? "active" : ""} onClick={() => handleNavClick("discover")}>Discover</a>
+          <a href="#" className={activeTab === "trending" ? "active" : ""} onClick={() => handleNavClick("trending")}>Trending</a>
+          <a href="#" className={activeTab === "new" ? "active" : ""} onClick={() => handleNavClick("new")}>New Drops</a>
         </nav>
-        <button className="nav-cta" type="button" onClick={user ? handleSignOut : handleOpenSignIn}>
-          {user ? "Sign out" : "Sign in"}
-        </button>
+        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+          <button className="nav-cta-btn" onClick={user ? handleSignOut : handleOpenSignIn}>
+            {user ? "Sign out" : "Login"}
+          </button>
+        </div>
       </header>
 
       {showSignIn ? (
@@ -421,44 +407,58 @@ function App() {
           </section>
         </main>
       ) : (
-        <main className="app-main">
-          <section className="app-container hero">
-            <div className="hero-grid">
-              <div className="hero-copy">
-                <p className="eyebrow">Curated for gamers</p>
-                <h1 className="title-gradient">Drop into the arcade.</h1>
-                <p className="subtitle">
-                  Search across genres, discover new favorites, and jump straight
-                  into high‑quality HTML5 games. No installs. No friction. Just play.
-                </p>
-                <div className="hero-stats">
-                  <div className="stat-pill">
-                    <span className="stat-label">Games live</span>
-                    <span className="stat-value">{games.length || "—"}</span>
-                  </div>
-                  <div className="stat-pill">
-                    <span className="stat-label">Latency</span>
-                    <span className="stat-value">Ultra‑low</span>
-                  </div>
-                  <div className="stat-pill">
-                    <span className="stat-label">Platform</span>
-                    <span className="stat-value">Web & Mobile</span>
-                  </div>
+        <main className="page">
+          <section className="hero">
+            <div className="hero-copy">
+              <div className="hero-badge-row">
+                <div className="hero-badge">
+                  <div className="hero-badge-pulse"></div>
+                  <span>100% Free Arcade</span>
                 </div>
+                <div className="hero-badge" style={{ borderColor: "rgba(255,255,255,0.1)" }}>
+                  <span>Fast Loading</span>
+                </div>
+              </div>
+
+              <h1 className="hero-title">
+                Jump into the Ultimate Arcade experience.
+              </h1>
+              <p className="hero-tagline">
+                Discover over <strong>{games.length || "500+"} games</strong> instantly. 
+                No downloads, no lag. Just pure, unadulterated gameplay right in your browser.
+              </p>
+
+              <div className="hero-cta-row">
+                <button className="btn-primary">
+                  Start Playing
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </button>
+                <button className="btn-secondary" onClick={() => document.getElementById("search-input")?.focus()}>
+                  Find a Game
+                </button>
               </div>
             </div>
 
-            <form className="search-container" onSubmit={handleSearch}>
+            <GamePreviewCard />
+          </section>
+
+          <section style={{ marginTop: "40px" }}>
+            <form className="search-container" onSubmit={handleSearch} style={{ maxWidth: "800px", margin: "0 auto 40px" }}>
               <input
+                id="search-input"
                 className="search-input"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search by title, franchise, or genre (e.g. Roguelike, Racing, Puzzle)..."
+                placeholder="Search by title, genre, or keyword..."
+                style={{ background: "rgba(11, 16, 32, 0.8)", border: "1px solid var(--border-subtle)" }}
               />
               <button className="search-button" type="submit" disabled={loading}>
                 {loading ? "Searching..." : "Search"}
               </button>
             </form>
+          </section>
 
             {categories.length > 0 && (
               <div className="filter-bar">
@@ -492,9 +492,8 @@ function App() {
                 </div>
               </div>
             )}
-          </section>
 
-          <section className="app-container">
+          <section>
             {loading && (
               <div className="loader-container">
                 <div className="loader"></div>
@@ -612,6 +611,7 @@ function App() {
                 justifyContent: "space-between",
                 alignItems: "center",
                 borderBottom: "1px solid rgba(255,255,255,0.1)",
+                background: "var(--bg-dark)",
               }}
             >
               <h2 className="modal-title" style={{ margin: 0 }}>
