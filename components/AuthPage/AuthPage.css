@@ -1,0 +1,233 @@
+:root {
+  --auth-bg: #000000;
+  --auth-card: rgba(10, 10, 10, 0.4);
+  --auth-input-bg: rgba(255, 255, 255, 0.05);
+  --auth-border: rgba(255, 255, 255, 0.1);
+  --auth-text-main: #ffffff;
+  --auth-text-sub: rgba(255, 255, 255, 0.6);
+  --auth-accent: #007aff;
+  --auth-accent-hover: #0062cc;
+}
+
+.auth-page-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent; /* Changed to transparent so background component shows */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Background Circuit Effect */
+.auth-background-circuit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2; /* Move above Hyperspeed */
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+.circuit-path {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 1;
+}
+
+.circuit-node {
+  fill: rgba(0, 0, 0, 0.5);
+  stroke: rgba(255, 255, 255, 0.2);
+  stroke-width: 1;
+}
+
+.circuit-node-inner {
+  fill: #ffffff;
+}
+
+/* Card Styles */
+.auth-card-new {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 420px;
+  background: var(--auth-card);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4), 
+              0 0 0 1px rgba(255, 255, 255, 0.05);
+  text-align: center;
+}
+
+.auth-header-new {
+  margin-bottom: 32px;
+}
+
+.auth-logo-new {
+  width: 54px;
+  height: 54px;
+  background: #141414;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2), 0 10px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: default;
+}
+
+.auth-logo-new:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+.auth-logo-icon-new {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--auth-accent);
+  border-radius: 50%;
+  border-top-color: transparent;
+}
+
+.auth-title-new {
+  color: var(--auth-text-main);
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.auth-subtitle-new {
+  color: var(--auth-text-sub);
+  font-size: 14px;
+  margin: 0;
+}
+
+.auth-link-new {
+  color: var(--auth-text-main);
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.auth-form-new {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-group-new {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon-new {
+  position: absolute;
+  left: 14px;
+  color: var(--auth-text-sub);
+  pointer-events: none;
+}
+
+.input-new {
+  width: 100%;
+  background: var(--auth-input-bg);
+  border: 1px solid var(--auth-border);
+  border-radius: 10px;
+  padding: 14px 14px 14px 42px;
+  color: var(--auth-text-main);
+  font-size: 15px;
+  transition: border-color 0.2s;
+}
+
+.input-new:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.auth-submit-new {
+  margin-top: 8px;
+  background: var(--auth-accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.auth-submit-new:hover {
+  background: var(--auth-accent-hover);
+}
+
+.auth-divider-new {
+  margin: 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--auth-text-sub);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.auth-divider-new::before,
+.auth-divider-new::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--auth-border);
+}
+
+.social-group-new {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.social-btn-new {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.social-btn-new:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.social-btn-new svg {
+  width: 20px;
+  height: 20px;
+}
+
+.auth-back-new {
+  margin-top: 24px;
+  background: none;
+  border: none;
+  color: var(--auth-text-sub);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.auth-back-new:hover {
+  color: var(--auth-text-main);
+}
